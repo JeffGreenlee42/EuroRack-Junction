@@ -1,0 +1,131 @@
+body {
+    width: 99%;
+    /* height: 99%; */
+}
+
+.container {
+    justify-content: center;
+    height: 90%;
+    margin-top: 40px;
+    /* width: 99%; */
+}
+
+.error_message {
+    color: red;
+}
+
+.display-container {
+    width: 70%;
+    border: solid 2px black;
+}
+
+.table {
+    width: 100%;
+}
+
+.recipes_table {
+    width: max-content;
+}
+
+.banner {
+    justify-content: space-between;
+    /* border-bottom: 2px solid black; */
+    margin-left: 30px;
+    padding-bottom: 20px;
+    padding-top: 20px;;
+
+}
+
+H1 {
+    color: purple;
+}
+
+H2 {
+    margin-bottom: 20px;
+    margin-left: 30px;
+}
+
+.actions {
+    margin-right: 30px;
+}
+
+.actions-link {
+    margin: 0 20px 0 20px;
+}
+
+
+.form-label {
+    white-space: nowrap;
+    width: 25ch;
+}
+
+.form-label-wrap {
+    white-space: pre-wrap;
+}
+.form-control {
+        border: solid 2px;
+        /* width: 100%; */
+    }
+
+/* .form-check-input {
+    margin-right: 40px;
+} */
+
+.form-check-label {
+    margin: 0 30px 0 20px;
+}
+
+.description, .instructions {
+    height: 10ch;
+}
+
+.btn-logout {
+    margin-left: 40px;
+}
+
+.btn-login {
+    background-color: green;
+}
+
+.panel-left {
+    background-color: whitesmoke;
+    margin-left: 20px;
+    margin-right: 40px;
+    padding: 40px 40px;
+    width: auto;
+}
+
+.panel-right {
+    background-color: whitesmoke;
+    background-color: whitesmoke;
+    height: 400px;
+    margin-left: 20px;
+    margin-right: 100px;
+    padding: 40px 40px;
+    width: auto;
+    
+}
+
+.recipe-panel {
+    width: 99%;
+}
+
+.recipe-label {
+    width: 200px;
+}
+
+.recipe-content {
+    width: 50%;
+}
+
+.btn-post {
+    margin-top: 10px;
+}
+
+.btn-delete {
+    margin-top: 0;
+}
+
+.btn-primary {
+    width:fit-content;
+}

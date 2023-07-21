@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/my_style.css') }}">
+    <title>Add Recipe</title>
+</head>
+<body>
+    <div class="banner d-flex flex-row justify-content-between">
+        <h2>Add a new Recipe!</h2>
+        <div class="actions d-flex flex-row">
+            <a class="actions-link" href="/recipes">back to recipes</a>
+            <a class="actions-link" href="/logout">logout</a>
+        </div>
+    </div>
+    <div class="container d-flex flex-row">
+        <div class="error_messages d-flex flex-column justify-content-center">
+            {% with messages = get_flashed_messages(category_filter=["recipe"]) %}
+                {% if messages %}
+                    <ul class=flashes>
+                    {% for message in messages %}
+                        <li class="error_message">{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %} 
+            {% endwith %}
+        </div>
+        <div class="mb-3 panel-left d-flex flex-column align-self-center">
+            <form action="/recipes/add_recipe" method="post">
+                <input type="hidden" name="users_id" id="users_id" value="{{session['user_id']}}">
+                <div class="mb-3 d-flex flex-row">
+                    <label class="form-label" >Recipe Name:</label>
+                    <input class="form-control" type="text" name="recipe_name" id="recipe_name" maxlength="144" value="{{recipe['recipe_name']}}">
+                </div>
+                <div class="mb-3 d-flex flex-column">
+                    <label class="form-label" for="description">Description:</label>
+                    <textarea class="form-control description" placeholder="Leave a description here" name="description" id="description">{{recipe['description']}}</textarea>
+                </div>
+                <div class="mb-3 d-flex flex-column">
+                    <label class="form-label" for="instructions">Instructions</label>
+                    <textarea class="form-control instructions" placeholder="Leave instructions here" name="instructions" id="instructions">{{recipe['instructions']}}</textarea>
+                </div>
+            </div>
+            <div class="panel-right d-flex flex-column align-self-center">
+                <div class="mb-3 d-flex flex-column" >
+                    <label class="form-label align-self-center align-text-center" for="date_made">Date Cookec/Mad</label>
+                    <input type="date" class="datepicker" name="date_made" id="date_made" value="{{recipe['date_made']}}">
+                </div>
+                <p>In Under 30 minutes?</p>
+                <div class="mb-3 d-flex flex-row" >
+                    <div class="form-check">
+                        <label class="form-check-label" for="under30">
+                        <input class="form-check-input" type="radio" value="on" name="under30" id="under30">
+                            Yes
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label" for="under30">
+                        <input class="form-check-input" type="radio" value="no" name="under30" id="under30" checked>
+                          No
+                        </label>
+                      </div>
+                </div>
+            </div>
+                <button type="submit" class="btn btn-primary align-self-end">Submit</button>    
+            </form>
+    </div>
+</body>
+</html>

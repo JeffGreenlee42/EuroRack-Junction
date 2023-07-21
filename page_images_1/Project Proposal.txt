@@ -1,0 +1,39 @@
+Euro Rack Junction - a buy/sell/Trading app
+
+The Euro Rack Junction will be a simple buy/sell/trading app for a very small niche market of
+ Modular Synthesis devices for a specific format which turns out to be the most popular format of the day. 
+ The format defines the size of the modules that can all be placed in a rack and patched together with patch cables or MIDI connectors for the purposes
+ of Musical exploration, sound production and Electronic musical performance. 
+
+ 1) A user will be able to register a simple profile  with their address defined (for when and if they purchase an item)
+    a)  Note that shipping info might later be put in the shopping cart portion  of app. 
+
+2) Once logged in, the user will initially see a listing of module devices that have been posted by other users. 
+
+3) If the user selects the line or displayed thumbnail image of the device Or press the "show" link, they will 
+be taken to the Show Item page, which will display characteristics of the device including name, manufacturer, condition, 
+dimensions (knon as HP or horizontal pitch) 1 U or 3 U which defines the rack size it fits in.  and depth (how deep the module extends into the rack).
+
+4) The item will describe the function within a modular synthesizer system, such as Oscillator, envelope, Sequencer, triggering, utility, and a plethor of 
+    other modular uses. 
+
+5) A description field will also be included as a text field for a more complete description of the Item, including URL's to the manufacturors site. 
+
+6)  If the user decides to buy, they can add it to the shopping cart and then have to option to go to the cart to checkout. 
+
+7) I have not yet worked out what the shopping cart portion will look like.  I will need to investigate Some shopping API's like Strype or Paypal
+
+8)  From the listing page, the user can also choose to post a module they wish to sell. 
+
+9)  They can also edit a previous posted sale item if the item is their own.
+
+10)  The post and edit page will include fields for all the common characteristics as well as a a description field and here they can upload an image of their object. 
+
+11) Obviously they will be able to edit a previous posting and be able to change any of the fields and change the image if they wish. 
+
+12)  The user will also be able to define a price...  Shipping hopefully will be calculated based on the location and shipping method chosen by the buyer. 
+
+13)  Finally there will be a shopping cart page, I have not defined that yet because I need more research into the shopping API and what that involves. 
+
+14) The Github URL for this Monster is here: https://github.com/JeffGreenlee42/EuroRack-Junction
+
