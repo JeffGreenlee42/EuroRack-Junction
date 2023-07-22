@@ -1,89 +1,107 @@
 from flask_app import app
 from flask import Flask, render_template, redirect, request, session, flash
-from flask_app.models.model_recipe import Recipe
+from flask_app.models.model_module import Module
 
 @app.route("/marketplace")
-def recipes():
+def modules():
     if 'user_id' not in session:
         session.clear()
         return render_template("/")
-    all_recipes = []
-    recipes = Recipe.get_all()
-    for recipe in recipes:
-        under30 = "No"
-        if recipe['under30'] > 0:
-            under30 = "Yes"
-        a_recipe = {
-            'recipe_id': recipe['recipe_id'],
-            'name': recipe['name'],
-            'under30': under30,
-            'posted_by': recipe['first_name']
+    all_modules = []
+    modules = Module.get_all()
+    for module in modules:
+        a_module = {
+            'module_id': module['id'],
+            'module_name': module['module_name'],
+            'maker': module['maker'],
+            'function': module['function'],
+            'panel_finish': module['panel_finish'],
+            'hp': module['hp'],
+            'one_u': module['one_u'],
+            'condition': module['condition'],
+            'photo': module['photo'],
+            'owner': module['users_id'],
+            'price': module['price'],
+            'description': module['description']
         }
-        all_recipes.append(a_recipe)
-    return render_template('recipes.html', all_recipes = all_recipes)
+        all_modules.append(a_module)
+    return render_template('modules.html', all_modules = all_modules)
 
 
 
-@app.route("/recipes/create_recipe")
-def create_recipe():
-    recipe = {
-        'recipe_name': '',
-        'description': '',
-        'instructions': '',
-        'date_made': '',
-        'under30': ''
+@app.route("/modules/create_module")
+def create_module():
+    module = {
+        'module_name': '',
+        'maker': '',
+        'function': '',
+        'panel_finish': '',
+        'hp': '',
+        'one_u': False,
+        'condition': '',
+        'photo': '',
+        'owner': session.user_id,
+        'price': 0,
+        'description': ''
     }
-    return render_template("new_recipe.html", recipe = recipe)
+    return render_template("new_module.html", module = module)
 
-@app.route("/recipes/add_recipe", methods=["POST"])
-def add_recipe():
+@app.route("/modules/add_module", methods=["POST"])
+def add_module():
     if 'user_id' not in session:
         return redirect("/logout")
-    valid = Recipe.validate_recipe(request.form)
+    valid = module.validate_module(request.form)
     if valid:
-        Recipe.add_recipe(request.form)
-        return redirect("/recipes")
-    recipe = {
-        'recipe_name': request.form['recipe_name'],
-        'description': request.form['description'],
-        'instructions': request.form['instructions'],
-        'date_made': request.form['date_made'],
-        'under30': request.form['under30']
+        module.add_module(request.form)
+        return redirect("/modules")
+    module = {
+            'module_id': module['id'],
+            'module_name': module['module_name'],
+            'maker': module['maker'],
+            'function': module['function'],
+            'panel_finish': module['panel_finish'],
+            'hp': module['hp'],
+            'one_u': module['one_u'],
+            'condition': module['condition'],
+            'photo': module['photo'],
+            'owner': module['users_id'],
+            'price': module['price'],
+            'description': module['description']
     }
-    return render_template("new_recipe.html", recipe = recipe)
+    return render_template("new_module.html", module = module)
 
-    return redirect("/recipes")
+    return redirect("/modules")
 
-@app.route("/recipes/get_one/<int:recipe_id>")
-def get_one(recipe_id):
-    recipe = Recipe.get_one(recipe_id)
-    if not recipe:
-        return redirect("/recipes")
-    return render_template("display_recipe.html", recipe = recipe)
+@app.route("/modules/get_one/<int:module_id>")
+def get_one(module_id):
+    module = module.get_one(module_id)
+    if not module:
+        return redirect("/modules")
+    return render_template("display_module.html", module = module)
 
-@app.route("/recipes/edit_recipe/<int:recipe_id>")
-def edit_recipe(recipe_id):
+@app.route("/modules/edit_module/<int:module_id>")
+def edit_module(module_id):
     if 'user_id' not in session:
         redirect("/")
-    recipe = Recipe.get_one(recipe_id)
-    if not recipe:
-        return redirect("/recipes")
-    return render_template("edit_recipe.html", recipe = recipe)
+    module = module.get_one(module_id)
+    if not module:
+        return redirect("/modules")
+    return render_template("edit_module.html", module = module)
     
-@app.route("/recipes/update_recipe", methods=['POST'])
-def change_recipe():
-    valid = Recipe.validate_recipe(request.form)
+@app.route("/modules/update_module", methods=['POST'])
+def change_module():
+    valid = Module.validate_module(request.form)
     if not valid:
-        return render_template("edit_recipe.html", recipe = request.form )
-    result = Recipe.change_order(request.form)
-    return redirect("/recipes")
+        return render_template("edit_module.html", module = request.form )
+    result = Module.change_order(request.form)
+    return redirect("/modules")
 
-@app.route("/recipes/delete/<int:recipe_id>")
-def delete_recipe(recipe_id):
-    recipe_id = {
-        'recipe_id': recipe_id
+@app.route("/modules/delete/<int:module_id>")
+def delete_module(module_id):
+    module_id = {
+        'module_id': module_id
     }
-    Recipe.delete_recipe(recipe_id)
-    return redirect("/recipes")
+    Module.delete_module(module_id)
+    return redirect("/modules")
 
 

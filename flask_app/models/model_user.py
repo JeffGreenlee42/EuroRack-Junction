@@ -7,7 +7,7 @@ import re
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 bcrypt = Bcrypt(app)
-db = "Eurorack_schema"
+db = "Eurorack_Junction"
 
 class User:
     def __init__(self, data):
