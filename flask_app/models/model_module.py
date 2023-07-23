@@ -17,6 +17,7 @@ class Module:
         self.photo = data['photo']
         self.owner = data['users_id']
         self.price = data['price']
+        self.shipping = data['shipping']
         self.description = data['description']
     
 
@@ -57,10 +58,11 @@ class Module:
             'photo': module_data['photo'],
             'owner': module_data['users_id'],
             'price': module_data['price'],
+            'shipping': module_data['shipping'],
             'description': module_data['description']
         }
-        query = """INSERT INTO modules (module_name, maker, function, panel_finish, hp, condition, photo, users_id, price, description ) 
-                   VALUES (%(module_name)s, %(maker)s, %(function)s, %(panel_finish)s, %(hp)s, %(condition)s, %(photo)s, %(owner)s, %(price)s, %(description)s)"""
+        query = """INSERT INTO modules (module_name, maker, function, panel_finish, hp, condition, photo, users_id, price, shipping, description ) 
+                   VALUES (%(module_name)s, %(maker)s, %(function)s, %(panel_finish)s, %(hp)s, %(condition)s, %(photo)s, %(owner)s, %(price)s, %(shipping)s, %(description)s)"""
         result = connectToMySQL(db).query_db(query, data)
         return result
     
@@ -76,7 +78,6 @@ class Module:
         if not module:
             return False
         return module# get module data in displayable format
-        
 
     @classmethod
     def change_module(cls, data):
@@ -84,7 +85,7 @@ class Module:
                     function = %(function)s, panel_finish = %(panel_finish)s, 
                     hp = %(hp)s, one_u = %(one_u)s, condition = %(condition)s, 
                     photo = %(photo)s, user_id = %(user_id)s, price = %(price)s,
-                    description = %(description)s
+                    shipping = %(shipping)s, description = %(description)s
                     WHERE id = %(module_id)s"""
         result = connectToMySQL(db).query_db(query, data)
         if not result:

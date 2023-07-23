@@ -1,6 +1,8 @@
 from flask_app import app
 from flask import Flask, render_template, redirect, request, session, flash
 from flask_app.models.model_module import Module
+import os
+import uuid
 
 @app.route("/marketplace")
 def modules():
@@ -29,8 +31,8 @@ def modules():
 
 
 
-@app.route("/modules/create_module")
-def create_module():
+@app.route("/modules/post_module")
+def post_module():
     module = {
         'module_name': '',
         'maker': '',
@@ -40,8 +42,9 @@ def create_module():
         'one_u': False,
         'condition': '',
         'photo': '',
-        'owner': session.user_id,
+        'owner': session['user_id'],
         'price': 0,
+        'shipping': 0,
         'description': ''
     }
     return render_template("new_module.html", module = module)
@@ -66,6 +69,7 @@ def add_module():
             'photo': module['photo'],
             'owner': module['users_id'],
             'price': module['price'],
+            'shipping': module['shipping'],
             'description': module['description']
     }
     return render_template("new_module.html", module = module)

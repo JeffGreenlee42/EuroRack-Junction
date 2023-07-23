@@ -1,0 +1,45 @@
+from flask import Flask, render_template, request
+import os
+import uuid  # For generating random unique strings
+
+app = Flask(__name__)
+
+UPLOAD_FOLDER = 'uploads'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def generate_unique_filename(filename):
+    # Get the file extension from the original filename
+    _, ext = os.path.splitext(filename)
+    # Generate a random unique string
+    unique_string = str(uuid.uuid4().hex)
+    # Concatenate the unique string with the file extension
+    return f"{unique_string}{ext}"
+
+@app.route('/post_module', methods=['GET', 'POST'])
+def post_module():
+    if request.method == 'POST':
+        # Retrieve the posted module data (e.g., module name, maker, etc.)
+        module_name = request.form['module_name']
+        maker = request.form['maker']
+        # Retrieve the uploaded file
+        file = request.files['image']
+
+        if file.filename == '':
+            return "No selected file", 400
+
+        if file:
+            filename = generate_unique_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            # Save the image URL in the database along with the module data
+            image_url = f"/{UPLOAD_FOLDER}/{filename}"
+            # Save module data and image URL in the database (or any other action you require)
+            # ...
+
+            # Redirect to a success page or render the same page with a success message
+            return render_template('success.html', module_name=module_name, image_url=image_url)
+
+    # Render the page where the user can post their module
+    return render_template('post_module.html')
+
+if __name__ == '__main__':
+    app.run()

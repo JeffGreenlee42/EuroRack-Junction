@@ -9,18 +9,18 @@
     <title>Eurorack Junction</title>
 </head>
 <body>
-    <div class="container">
-        <div class="d-flex justify-content-between">
+    <div class="container d-flex flex-column justify-content-center mx-auto">
+        <div class="banner d-flex flex-row justify-content-between">
             <h2>Eurorack Junction</h2>
             <div class="actions">
-                <a class="actions-link" href="">Post a Module for sale!</a>
+                <a class="actions-link" href="/modules/post_module">Post a Module for sale!</a>
                 <a class="actions-link" href="">View your items for sale!</a>
                 <a class="actions-link" href="/logout">Logout</a>
             </div>
         </div>
-    </div>
+        <p>{{session.user_id}}</p>
         <div class="row">
-            <table class="table table-striped modules-table" style="width: 100%">
+            <table class="table table-striped modules-table">
                 <thead>
                     <tr>
                         <th scope="col">Module Name</th>

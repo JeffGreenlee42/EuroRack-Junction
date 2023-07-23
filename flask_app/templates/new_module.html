@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/my_style.css') }}">
+    <title>Post a Module</title>
+</head>
+<body>
+    <div class="container d-flex flex-column">
+        <div class="banner d-flex flex-row justify-content-between">
+            <h2>Post your module!</h2>
+            <div class="actions d-flex flex-row">
+                <a class="actions-link" href="/marketplace">Home</a>
+            </div>
+        </div>    
+        <div class="error_messages d-flex flex-column justify-content-center">
+            {% with messages = get_flashed_messages(category_filter=["module"]) %}
+                {% if messages %}
+                    <ul class=flashes>
+                    {% for message in messages %}
+                        <li class="error_message">{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %} 
+            {% endwith %}
+        </div>
+        <div class="post-entry d-flex flex-row">
+            <form action="/modules/add_module" method="post" id="module">
+                <div class="mb-3 module-attributes d-flex flex-column">
+                    <div class="module-attributes-section1 d-flex flex-row">
+                        <div class="module-attributes-left d-flex flex-column">                    
+                            <input type="hidden" name="users_id" id="users_id" value="{{session['user_id']}}">
+                            <div class="mb-3 d-flex flex-row">
+                                <label class="form-label" >Module Name:</label>
+                                <input class="form-control" type="text" name="module_name" id="module_name" maxlength="144" value="{{module['module_name']}}">
+                            </div>
+                            <div class="mb-3 d-flex flex-row">
+                                <label class="form-label" for="maker">Maker:</label>
+                                <input class="form-control" type="text" placeholder="Maker" name="maker" id="maker">{{module['maker']}}</input>
+                            </div>
+                            <div class="mb-3 d-flex flex-row">
+                                <label class="form-label" for="function">Function:</label>
+                                <input class="form-control" type="text" placeholder="Function" name="function" id="function">{{module['function']}}</input>
+                            </div>
+                            <div class="mb-3 d-flex flex-row">
+                                <label class="form-label" for="condition">Condition:</label>
+                                <select name="condition" id="condition" form="module">
+                                    <option value="white">Excellent</option>
+                                    <option value="black">Good</option>
+                                    <option value="silver">Fair</option>
+                                    <option value="other">Poor</option>    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="module-attributes-right d-flex flex-column">                
+                            <label class="form-label" for="finish">Finish:</label>
+                            <select name="finish" id="finish" form="module">
+                                <option value="white">white</option>
+                                <option value="black">black</option>
+                                <option value="silver">silver</option>
+                                <option value="other">other</option>
+                            </select>
+                            <div class="hp-1u d-flex flex-row">
+                                <label class="form-label" for="hp">HP:</label>
+                                <input type="number" name="hp" id="hp" min="2" max="100">
+                                <input type="checkbox" id="1u" name="1u" value="one_u">
+                                <label for="1u">1u?</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="description d-flex flex-column">
+                        <label for="description">Description:</label>
+                        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                        <div class="price-shipping d-flex flex-row">
+                            <label for="price">Price:</label>
+                            <input type="number" id="price" name="price" min="0">
+                            <label for="shipping">Shipping:</label>
+                            <input type="number" id="shipping" name="shipping" min="0">
+                        </div>
+                    </div>
+                </div>
+                <div class="module-photo d-flex flex-column">
+                    <input type="image" id="module-photo" name="module-photo">
+                </div>
+            </div>
+                    <button type="submit" class="btn btn-primary align-self-end">Submit</button>    
+            </form>
+    </div>
+</body>
+</html>
