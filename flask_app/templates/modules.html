@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/my_style.css') }}">
+    <title>Eurorack Junction</title>
+</head>
+<body>
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            <h2>Eurorack Junction</h2>
+            <div class="actions">
+                <a class="actions-link" href="">Post a Module for sale!</a>
+                <a class="actions-link" href="">View your items for sale!</a>
+                <a class="actions-link" href="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+        <div class="row">
+            <table class="table table-striped modules-table" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th scope="col">Module Name</th>
+                        <th scope="col">Maker</th>
+                        <th scope="col">Function</th>
+                        <th scope="col">HP</th>
+                        <th scope="col">1U?</th>
+                        <th scope="col">Condition</th>
+                        <th scope="col">Thumbnail</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>name of odule</td>
+                        <td>module maker</td>
+                        <td>sequencer</td>
+                        <td>20</td>
+                        <td>
+                            <input type="checkbox" id="1u" name="1u" value="1u" disabled>
+                            <label for="1u">1u?</label>
+                        </td>
+                        <td>Condition</td>
+                        <td>Thumbnail</td>
+                        <td><a href="">show</a><a href="">edit</a><a href="">delete</a></td>
+                    </tr>
+                    <!-- {% for module in all_modules %}
+                        <tr>
+                            <td scope="row">{{module.name}}</td>
+                            <td>{{module.under30}}</td>
+                            <td>{{module.posted_by}}</td>
+                            <td><a href="/modules/get_one/{{module.module_id}}">View module</a> | <a href="/modules/edit_module/{{module.module_id}}">Edit</a> | <a href="/modules/delete/{{module.module_id}}">Delete</a></td>
+                        </tr>
+                    {% endfor %} -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
