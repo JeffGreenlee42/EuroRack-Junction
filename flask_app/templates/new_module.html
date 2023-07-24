@@ -45,9 +45,9 @@
                                 <label class="form-label" for="function">Function:</label>
                                 <input class="form-control" type="text" placeholder="Function" name="function" id="function">{{module['function']}}</input>
                             </div>
-                            <div class="mb-3 d-flex flex-row">
+                            <div class="condition mb-3 d-flex flex-row">
                                 <label class="form-label" for="condition">Condition:</label>
-                                <select name="condition" id="condition" form="module">
+                                <select class="form-control condition-select" name="condition" id="condition" form="module">
                                     <option value="white">Excellent</option>
                                     <option value="black">Good</option>
                                     <option value="silver">Fair</option>
@@ -55,16 +55,18 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="module-attributes-right d-flex flex-column">                
-                            <label class="form-label" for="finish">Finish:</label>
-                            <select name="finish" id="finish" form="module">
-                                <option value="white">white</option>
-                                <option value="black">black</option>
-                                <option value="silver">silver</option>
-                                <option value="other">other</option>
-                            </select>
-                            <div class="hp-1u d-flex flex-row">
-                                <label class="form-label" for="hp">HP:</label>
+                        <div class="module-attributes-right d-flex flex-column">
+                            <div class="mb-3 d-flex flex-row">
+                                <label class="form-label" for="finish">Finish:</label>
+                                <select class="form-control" name="finish" id="finish" form="module">
+                                    <option value="white">white</option>
+                                    <option value="black">black</option>
+                                    <option value="silver">silver</option>
+                                    <option value="other">other</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 d-flex flex-row">
+                                <label for="hp">HP:</label>
                                 <input type="number" name="hp" id="hp" min="2" max="100">
                                 <input type="checkbox" id="1u" name="1u" value="one_u">
                                 <label for="1u">1u?</label>

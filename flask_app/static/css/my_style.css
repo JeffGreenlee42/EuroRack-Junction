@@ -55,13 +55,13 @@ H2 {
 
 
 .form-label {
-    white-space: nowrap;
+    /* white-space: nowrap; */
     width: 25ch;
 }
 
-.form-label-wrap {
+/* .form-label-wrap {
     white-space: pre-wrap;
-}
+} */
 .form-control {
         border: solid 2px;
         /* width: 100%; */
@@ -74,6 +74,9 @@ H2 {
     margin-right: 40px;
 } */
 
+.module-attributes {
+    width: 100%;
+}
 .module-attributes-left {
     border: 2px solid black;
 }
@@ -81,9 +84,8 @@ H2 {
     border: 2px solid black;
 }
 
-.form-check-label {
-    margin: 0 30px 0 20px;
-}
+
+
 
 .description, .instructions {
     height: 10ch;
