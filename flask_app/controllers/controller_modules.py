@@ -4,6 +4,9 @@ from flask_app.models.model_module import Module
 import os
 import uuid
 
+UPLOAD_FOLDER = 'uploads'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 @app.route("/marketplace")
 def modules():
     if 'user_id' not in session:

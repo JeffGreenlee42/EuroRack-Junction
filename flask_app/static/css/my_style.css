@@ -1,13 +1,23 @@
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    width: 99%;
-    /* height: 99%; */
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
 }
 
 .container {
-    /* justify-content: center; */
-    height: 90%;
-    margin: 100px;
-    /* background-color: aqua; */
+    background-color: whitesmoke;
+    height: 100%;
+    width: 100%;
+    padding: 20px; 
 }
 
 .error_message {
@@ -23,17 +33,11 @@ body {
     width: 100%;
 }
 
-.recipes_table {
-    width: max-content;
-}
-
 .banner {
-    /* justify-content: space-between; */
-    /* border-bottom: 2px solid black; */
+    border-bottom: 2px solid black; 
     margin-left: 30px;
     padding-bottom: 20px;
     padding-top: 20px;;
-
 }
 
 H1 {
@@ -68,27 +72,44 @@ H2 {
     }
 
 .post-entry {
-    background-color: aqua;
+    background-color: greenyellow;
 }
-/* .form-check-input {
-    margin-right: 40px;
-} */
 
 .module-attributes {
-    width: 100%;
+    background-color: pink;
+    /* height: 700px;
+    width: 1400px; */
 }
+
+/* .module-attributes-section1 {
+    background-color: brown;
+} */
+
 .module-attributes-left {
     border: 2px solid black;
 }
 .module-attributes-right {
     border: 2px solid black;
+    /* width: 40%;
+    height: 400px; */
+}
+
+.hp-label {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.one_u {
+    margin-left: 20px;
+}
+
+.one_u-label {
+    margin-left: 10px;
 }
 
 
-
-
-.description, .instructions {
-    height: 10ch;
+.description {
+    height: 15ch;
 }
 
 .btn-logout {
