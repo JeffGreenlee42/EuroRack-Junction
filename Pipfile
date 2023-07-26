@@ -9,6 +9,8 @@ flask = "*"
 flash = "*"
 bcrypt = "*"
 flask-bcrypt = "*"
+flask-wtf = "*"
+wtform = "*"
 
 [dev-packages]
 

@@ -10,13 +10,15 @@ body {
     padding: 0;
     width: 100%;
     height: 100%;
-    background-color: black;
+    background-image: url('../images/Patching_dream.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .container {
-    background-color: whitesmoke;
+    background-color: white;
     height: 100%;
-    width: 100%;
+    width: 120%;
     padding: 20px; 
 }
 
@@ -49,6 +51,10 @@ H2 {
     margin-left: 30px;
 }
 
+.H2-create-edit {
+    color: yellow;
+}
+
 .actions {
     margin-right: 30px;
 }
@@ -60,19 +66,26 @@ H2 {
 
 .form-label {
     /* white-space: nowrap; */
+    color: whitesmoke;
     width: 25ch;
+}
+
+.label-finish {
+    margin-right: 0;
 }
 
 /* .form-label-wrap {
     white-space: pre-wrap;
 } */
 .form-control {
-        border: solid 2px;
-        /* width: 100%; */
-    }
+    border: solid 2px yellow;
+}
 
+.finish-fm-cntrl {
+    /* margin-left: 2; */
+}
 .post-entry {
-    background-color: greenyellow;
+    background-color: black;
 }
 
 .module-attributes {
@@ -86,15 +99,22 @@ H2 {
 } */
 
 .module-attributes-left {
-    border: 2px solid black;
+    border: 0.5px solid orange;
+    margin: 20px;
+    padding: 30px;
+    width: 500px;
+
 }
 .module-attributes-right {
-    border: 2px solid black;
-    /* width: 40%;
-    height: 400px; */
+    border: 2px solid orange;
+    margin: 20px;
+    padding: 50px 30px 30px 30px;
+    width: 220px;
 }
 
+
 .hp-label {
+    color: whitesmoke;
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -137,6 +157,17 @@ H2 {
     padding: 40px 40px;
     width: auto;
     
+}
+
+.photo {
+    background-image: url(../images/default-no-image.jpeg);
+    background-repeat: no-repeat;
+    width: 100%;
+}
+
+.file_controls {
+    background-color: azure;
+    height: 40px;
 }
 
 .btn-post {

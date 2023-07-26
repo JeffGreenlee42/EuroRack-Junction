@@ -1,10 +1,16 @@
 from flask_app import app
 from flask import Flask, render_template, redirect, request, session, flash
 from flask_app.models.model_module import Module
+from werkzeug.utils import secure_filename
+from werkzeug.exceptions import RequestEntityTooLarge
+# from flask import Flaskform
+# from flask import FileField 
 import os
 import uuid
 
-UPLOAD_FOLDER = 'uploads'
+    
+
+UPLOAD_FOLDER = '../static/images/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route("/marketplace")
@@ -110,5 +116,18 @@ def delete_module(module_id):
     }
     Module.delete_module(module_id)
     return redirect("/modules")
+
+@app.route("/upload", methods=['POST'])
+def upload():
+    try:
+        file = request.files['file']
+        if file:
+            file.save(os.path.join(
+                app.config['UPLOAD_DIRECTORY'],
+                secure_filename(file.filename)
+            ))
+    except RequestEntityTooLarge:
+        return "The File you uploaded is larger than the limit of 16MB."
+    return redirect("/modules/post_module")
 
 
