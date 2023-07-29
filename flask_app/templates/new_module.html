@@ -34,6 +34,8 @@
                             <div class="attribues d-flex flex-row">
                                 <div class="module-attributes-left d-flex flex-column">
                                     <input type="hidden" name="users_id" id="users_id" value="{{session['user_id']}}">
+                                    <input type="hidden" name="photo" id="photo" value="{{session['photo_file_name']}}">
+
                                     <div class="mb-3 d-flex flex-row">
                                         <label class="form-label" >Module Name:</label>
                                         <input class="form-control" type="text" name="module_name" id="module_name" maxlength="144" value="{{module['module_name']}}">
@@ -49,17 +51,17 @@
                                     <div class="condition mb-3 d-flex flex-row">
                                         <label class="form-label" for="condition">Condition:</label>
                                         <select class="form-control condition-select" name="condition" id="condition" form="module">
-                                            <option value="white">Excellent</option>
-                                            <option value="black">Good</option>
-                                            <option value="silver">Fair</option>
-                                            <option value="other">Poor</option>    
+                                            <option value="Excellent">Excellent</option>
+                                            <option value="Good">Good</option>
+                                            <option value="Fair">Fair</option>
+                                            <option value="Poor">Poor</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="module-attributes-right d-flex flex-column">
                                     <div class=" mb-3 d-flex flex-row">
-                                        <label class="label-finish form-label"for="finish">Finish:</label>
-                                        <select class="finish-fm-cntrl form-control" name="finish" id="finish" form="module">
+                                        <label class="label-finish form-label" for="panel_finish">Finish:</label>
+                                        <select class="form-control finish-fm-cntrl" name="panel_finish" id="panel_finish" form="module">
                                             <option value="white">white</option>
                                             <option value="black">black</option>
                                             <option value="silver">silver</option>
@@ -69,14 +71,14 @@
                                     <div class="mb-3 d-flex flex-row">
                                         <label class="hp-label"for="hp">HP:</label>
                                         <input class="hp" type="number" name="hp" id="hp" min="2" max="100">
-                                        <input class="one_u" type="checkbox" id="1u" name="1u" value="one_u">
-                                        <label class="one_u-label" for="1u">1u?</label>
+                                        <input class="one_u" type="checkbox" id="one_u" name="one_u" value="1">
+                                        <label class="one_u-label" for="one_u">1u?</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="description d-flex flex-column">
-                                <label for="description">Description:</label>
-                                <textarea name="description" id="description" cols="30" rows="50"></textarea>
+                                <label class="form-label" for="description">Description:</label>
+                                <textarea class="descr-text" name="description" id="description" cols="50" rows="80"></textarea>
                                 <div class="price-shipping d-flex flex-row">
                                     <label for="price">Price:</label>
                                     <input type="number" id="price" name="price" min="0">
@@ -85,11 +87,13 @@
                                 </div>
                             </div>
                         </div> 
+                            <input class="btn btn-primary"   type="submit" value="add_module">
                     </form>
                 </div>
                 <div class="photo d-flex flex-row justify-content-center align-items-end">
-                    <div class="file-controls d-flex flex-row justify-content-center">                        
-                        <form action="/upload" method="POST" enctype="multipart/form-data">
+                    <div class="file-controls d-flex flex-row justify-content-center"> 
+                        <img src="{{module['photo']}}" alt="Uploaded module photo">                       
+                        <form action="/upload" method="POST" enctype="multipart/form-data" id="photo">
                             <input type="file" name="file">
                             <input type="submit" value="upload">
                         </form>

@@ -19,10 +19,12 @@ def modules():
         session.clear()
         return render_template("/")
     all_modules = []
+    # print("About to enter Module.get_all()")
     modules = Module.get_all()
+    # print(f"In controller modules() modules is {modules}")
     for module in modules:
         a_module = {
-            'module_id': module['id'],
+            'module_id': module['modules.id'],
             'module_name': module['module_name'],
             'maker': module['maker'],
             'function': module['function'],
@@ -31,11 +33,12 @@ def modules():
             'one_u': module['one_u'],
             'condition': module['condition'],
             'photo': module['photo'],
-            'owner': module['users_id'],
+            'users_id': module['users_id'],
             'price': module['price'],
             'description': module['description']
         }
         all_modules.append(a_module)
+        print(f"all_modules is {all_modules}")  
     return render_template('modules.html', all_modules = all_modules)
 
 
@@ -51,7 +54,7 @@ def post_module():
         'one_u': False,
         'condition': '',
         'photo': '',
-        'owner': session['user_id'],
+        'users_id': session['user_id'],
         'price': 0,
         'shipping': 0,
         'description': ''
@@ -62,34 +65,42 @@ def post_module():
 def add_module():
     if 'user_id' not in session:
         return redirect("/logout")
-    valid = module.validate_module(request.form)
-    if valid:
-        module.add_module(request.form)
-        return redirect("/modules")
+    if 'photo_file_name' not in session:
+        session['photo_file_name'] = 'NO_PHOTO'
+    one_u_value = request.form.get('one_u', type=int)
+    if one_u_value == 1:
+        one_u_value = 1
+    else:
+        one_u_value = 0
     module = {
-            'module_id': module['id'],
-            'module_name': module['module_name'],
-            'maker': module['maker'],
-            'function': module['function'],
-            'panel_finish': module['panel_finish'],
-            'hp': module['hp'],
-            'one_u': module['one_u'],
-            'condition': module['condition'],
-            'photo': module['photo'],
-            'owner': module['users_id'],
-            'price': module['price'],
-            'shipping': module['shipping'],
-            'description': module['description']
+            # 'module_id': request.form['module_id'],
+            'module_name': request.form['module_name'],
+            'maker': request.form['maker'],
+            'function': request.form['function'],
+            'panel_finish': request.form['panel_finish'],
+            'hp': request.form['hp'],
+            'one_u': one_u_value,
+            'condition': request.form['condition'],
+            'photo': session['photo_file_name'],
+            'users_id': request.form['users_id'],
+            'price': request.form['price'],
+            'shipping': request.form['shipping'],
+            'description': request.form['description']
     }
+    valid = Module.validate_module(request.form)
+    if valid:
+        print(f"add_module() request.form is: {request.form}")
+        Module.add_module(module)
+        return redirect("/marketplace")
     return render_template("new_module.html", module = module)
-
-    return redirect("/modules")
 
 @app.route("/modules/get_one/<int:module_id>")
 def get_one(module_id):
-    module = module.get_one(module_id)
+    module = Module.get_one(module_id)
+    print(f"in controller - get_One() module is {module}")
     if not module:
-        return redirect("/modules")
+        return redirect("/marketplace")
+    
     return render_template("display_module.html", module = module)
 
 @app.route("/modules/edit_module/<int:module_id>")
@@ -100,7 +111,7 @@ def edit_module(module_id):
     if not module:
         return redirect("/modules")
     return render_template("edit_module.html", module = module)
-    
+
 @app.route("/modules/update_module", methods=['POST'])
 def change_module():
     valid = Module.validate_module(request.form)
@@ -115,7 +126,7 @@ def delete_module(module_id):
         'module_id': module_id
     }
     Module.delete_module(module_id)
-    return redirect("/modules")
+    return redirect("/marketplace")
 
 @app.route("/upload", methods=['POST'])
 def upload():
@@ -126,6 +137,7 @@ def upload():
                 app.config['UPLOAD_DIRECTORY'],
                 secure_filename(file.filename)
             ))
+            session['photo_file_name'] = secure_filename(file.filename)
     except RequestEntityTooLarge:
         return "The File you uploaded is larger than the limit of 16MB."
     return redirect("/modules/post_module")

@@ -9,7 +9,7 @@
     <title>Eurorack Junction</title>
 </head>
 <body>
-    <div class="container d-flex flex-column justify-content-center mx-auto">
+    <div class="container main-container d-flex flex-column justify-content-center mx-auto">
         <div class="banner d-flex flex-row justify-content-between">
             <h2>Eurorack Junction</h2>
             <div class="actions">
@@ -34,27 +34,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>name of odule</td>
-                        <td>module maker</td>
-                        <td>sequencer</td>
-                        <td>20</td>
-                        <td>
-                            <input type="checkbox" id="1u" name="1u" value="1u" disabled>
-                            <label for="1u">1u?</label>
-                        </td>
-                        <td>Condition</td>
-                        <td>Thumbnail</td>
-                        <td><a href="">show</a><a href="">edit</a><a href="">delete</a></td>
-                    </tr>
-                    <!-- {% for module in all_modules %}
+                    {%  for module in all_modules %}
                         <tr>
-                            <td scope="row">{{module.name}}</td>
-                            <td>{{module.under30}}</td>
-                            <td>{{module.posted_by}}</td>
-                            <td><a href="/modules/get_one/{{module.module_id}}">View module</a> | <a href="/modules/edit_module/{{module.module_id}}">Edit</a> | <a href="/modules/delete/{{module.module_id}}">Delete</a></td>
+                            <td scope="row">{{module.module_name}}</td>
+                            <td scope="row">{{module.maker}}</td>
+                            <td scope="row">{{module.function}}</td>
+                            <td scope="row">{{module.hp}}</td>
+                            <td scope="row">
+                                
+                                    <input type="checkbox" id="1u" name="1u" value="1u" {%if module.one_u == 1 %} checked {% endif %} disabled>
+                                <label for="1u">1u?</label>
+                            </td>
+                            <td scope="row">{{module.condition}}</td>
+                            <td scope="row">Thumbnail</td>
+                            <td scope="row"><a href="/modules/get_one/{{module.module_id}}">show</a> 
+                                {% if module.users_id == session['user_id']%}
+                                <span> - </span> <a href="#">edit</a> <span> - </span> <a href="/modules/delete/{{module.module_id}}">delete</a>
+                                {% endif %}
+                            </td>
                         </tr>
-                    {% endfor %} -->
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

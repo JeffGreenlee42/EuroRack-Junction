@@ -13,12 +13,12 @@ class Module:
         self.module_name = data['module_name']
         self.maker = data['maker']
         self.function = data['function']
-        self.panel_finish = data['panel']
+        self.panel_finish = data['panel_finish']
         self.hp = data['hp']
         self.one_u = data['one_u']
         self.condition = data['condition']
         self.photo = data['photo']
-        self.owner = data['users_id']
+        self.users_id = data['users_id']
         self.price = data['price']
         self.shipping = data['shipping']
         self.description = data['description']
@@ -46,26 +46,27 @@ class Module:
         query = """SELECT * FROM users JOIN modules
                     ON users.id = modules.users_id;"""
         results = connectToMySQL(db).query_db(query)
+        print(f"model_module: get_all results is {results}")
         return results
 
     @classmethod
     def add_module(cls, module_data):
-        
+        # print(f"model - add_module: module_data is: {module_data}")
         data = {
             'module_name': module_data['module_name'],
             'maker': module_data['maker'],
             'function': module_data['function'],
-            'panel_finish': module_data['panel_finish'],
             'hp': module_data['hp'],
+            'one_u': module_data['one_u'],
             'condition': module_data['condition'],
-            'photo': module_data['photo'],
-            'owner': module_data['users_id'],
+            'panel_finish': module_data['panel_finish'],
+            'users_id': module_data['users_id'],
             'price': module_data['price'],
             'shipping': module_data['shipping'],
             'description': module_data['description']
         }
-        query = """INSERT INTO modules (module_name, maker, function, panel_finish, hp, condition, photo, users_id, price, shipping, description ) 
-                   VALUES (%(module_name)s, %(maker)s, %(function)s, %(panel_finish)s, %(hp)s, %(condition)s, %(photo)s, %(owner)s, %(price)s, %(shipping)s, %(description)s)"""
+        query = """INSERT INTO modules (module_name, maker, `function`, panel_finish, hp, one_u, `condition`, users_id, price, shipping, `description` ) 
+                   VALUES (%(module_name)s, %(maker)s, %(function)s, %(panel_finish)s, %(hp)s, %(one_u)s, %(condition)s, %(users_id)s, %(price)s, %(shipping)s, %(description)s)"""
         result = connectToMySQL(db).query_db(query, data)
         return result
     
@@ -80,7 +81,7 @@ class Module:
         module = connectToMySQL(db).query_db(query, module_id)
         if not module:
             return False
-        return module# get module data in displayable format
+        return module[0]# get module data in displayable format
 
     @classmethod
     def change_module(cls, data):

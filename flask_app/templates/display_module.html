@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/my_style.css') }}">
+    <title>View Module</title>
+</head>
+<body class="body display-body d-flex flex-column justify-content-center align-items-center">
+    <div class="container display-container d-flex flex-column justify-content-center">
+        <div class="banner-display d-flex flex-row justify-content-between">
+            <h2>{{module.module_name}}</h2>
+            <div class="actions d-flex flex-row">
+                <a href="/marketplace" class="button-link">Home</a>
+            </div>
+        </div>
+        <div class="display-main-panel d-flex flex-row justify-content-start align-items-center">
+            <div class="display-module-descript d-flex flex-column">
+                <div class="maker-group d-flex flex-row justify-content-start">
+                    <p class="display-label">Maker:</p>
+                    <p class="display-content">{{module.maker}}</p>
+                </div>
+                <div class="function-group d-flex flex-row justify-content-start">
+                    <p class="display-label">Function:</p>
+                    <p class="display-content">{{module.function}}</p>
+                </div>
+                <div class="condition-group d-flex flex-row justify-content-start">
+                    <p class="display-label">Condition:</p>
+                    <p class="display-content">{{module.condition}}</p>
+                </div>
+                <div class="size-finish d-flex flex-row justify-content-between">
+                    <div class="d-flex flex-row justify-content-center">
+                        <p class="display-label size-finish-label">HP:</p>
+                        <p class="display-content size-finish-content">{{module.hp}}</p>
+                    </div>
+                    <div class="d-flex flex-row justify-content-center">
+                        <p class="display-label size-finish-label"> {% if (module.one_u == 1) %} 1u {% else %} 3u {% endif %} </p>
+                        <p class="display-content size-finish-content">{{module.one_u}}</p>
+                    </div>
+                    <div class="d-flex flex-row justify-content-center">
+                        <p class="display-label size-finish-label">Panel Finish</p>
+                        <p class="display-content size-finish-content">{{module.panel_finish}}</p>
+                    </div>
+                </div>
+                <div class="description">
+                    <p class="description_label "></p>
+                </div>
+            </div>
+            <div class="display-module-photo d-flex flex-column">
+          
+            </div>
+          </div>
+    <!-- <div class="container ddlay-container d-flex flex-column justify-content-center">
+        <div class="maker-group d-flex flex-row justify-content-center" >
+            <p class="display-label">Maker:</p>
+            <p class="display-content">{{module['maker']}}</p>
+        </div>
+        <div class="function-group d-flex flex-row justify-content-center" >
+                <p class="display-label">Function:</p>
+                <p class="display-content">{{module['function']}}</p>
+            </div>
+            <div class="condition-group d-flex flex-row justify-content-center" >
+                <p class="display-label">Condition:</p>
+                <p class="display-content">{{module['condition']}}</p>
+            </div>
+            <div class="size-finish d-flex flex-row ">
+                <div class=" d-flex flex-row justify-content-center" >
+                    <p class="display-label">HP</p>
+                    <p class="display-content">{{module['hp']}}</p>
+                <div class=" d-flex flex-row justify-content-center" >
+                    <p class="display-label">1u</p>
+                    <p class="display-content">{{module['one_u']}}</p>
+                <div class=" d-flex flex-row justify-content-center" >
+                    <p class="display-label">Panel Finish</p>
+                    <p class="display-content">{{module['panel_finish']}}</p>
+                </div>
+            </div>
+            <div class="description">
+                <p class="description_label "></p>
+
+            </div>
+        </div>
+    </div> -->
+</body>
+</html>

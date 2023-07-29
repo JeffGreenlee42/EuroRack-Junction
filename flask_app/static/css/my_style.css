@@ -6,6 +6,7 @@ html {
 }
 
 body {
+    font-family: 'Times New Roman', Times, serif;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -15,31 +16,136 @@ body {
     background-size: cover;
 }
 
-.container {
-    background-color: white;
-    height: 100%;
-    width: 120%;
-    padding: 20px; 
+.actions {
+    margin-right: 30px;
 }
 
-.error_message {
-    color: red;
+.actions-link {
+    margin: 0 20px 0 20px;
 }
 
-.display-container {
-    width: 70%;
-    border: solid 2px black;
-}
-
-.table {
-    width: 100%;
-}
 
 .banner {
     border-bottom: 2px solid black; 
     margin-left: 30px;
     padding-bottom: 20px;
     padding-top: 20px;;
+}
+
+.banner-display {
+    border: solid 1px black;
+}
+
+.body-login {
+    background-image: url('../images/knurlie.jpg');
+    background-repeat: repeat;
+    background-size: cover;
+}
+
+.button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #007bff; /* Change this to the desired background color */
+    color: #fff; /* Change this to the desired text color */
+    border: 2px solid #007bff; /* Change this to the desired border color */
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.btn-delete {
+    margin-top: 0;
+}
+
+.btn-login {
+    background-color: green;
+}
+
+.btn-logout {
+        margin-left: 40px;
+}
+
+.btn-post {
+    margin-top: 10px;
+}
+
+.btn-primary {
+    width:fit-content;
+}
+
+.container {
+    background-color: black;
+    height: 100%;
+    width: 120%;
+    padding: 20px;
+}
+
+.description {
+    margin: 20px;
+    height: 300px;
+}
+
+.display-container {
+    width: 70%;
+    height: 80%;
+    background-color: antiquewhite;
+    border: solid 2px rgb(243, 239, 239);
+}
+
+.display-label {
+    font-weight: bold;
+    font-size: 40px;
+    margin: 0;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    padding-right: 20px;
+}
+
+.display-content {
+    position: absolute;
+    left: 270px;
+    font-size: 36px;
+    margin: 0;
+}
+
+.display-main-panel {
+    border: solid 2px red;
+    height: 100%;
+    width: 100%;
+}
+
+.display-module-descript {
+    position: relative;
+    border: solid 2px blue;
+    height: 95%;
+    padding: 20px;
+    width: 60%;
+}
+
+.display-module-photo {
+    border: solid 2px green;
+    height: 95%;
+    width: 40%;
+    
+}
+
+.error_message {
+    color: red;
+}
+
+.file_controls {
+    background-color: azure;
+    height: 40px;
+}
+
+.form-control {
+    border: solid 2px yellow;
+}
+
+.form-label {
+    /* white-space: nowrap; */
+    color: whitesmoke;
+    width: 25ch;
 }
 
 H1 {
@@ -55,48 +161,24 @@ H2 {
     color: yellow;
 }
 
-.actions {
-    margin-right: 30px;
-}
-
-.actions-link {
-    margin: 0 20px 0 20px;
-}
-
-
-.form-label {
-    /* white-space: nowrap; */
+.hp-label {
     color: whitesmoke;
-    width: 25ch;
+    margin-left: 8px;
+    margin-right: 20px;
 }
 
 .label-finish {
     margin-right: 0;
 }
 
-/* .form-label-wrap {
-    white-space: pre-wrap;
-} */
-.form-control {
-    border: solid 2px yellow;
-}
-
-.finish-fm-cntrl {
-    /* margin-left: 2; */
-}
-.post-entry {
-    background-color: black;
+.main-container {
+    background-color: rgb(218, 175, 238);
 }
 
 .module-attributes {
     background-color: pink;
-    /* height: 700px;
-    width: 1400px; */
+    width: 1400px; 
 }
-
-/* .module-attributes-section1 {
-    background-color: brown;
-} */
 
 .module-attributes-left {
     border: 0.5px solid orange;
@@ -112,32 +194,13 @@ H2 {
     width: 220px;
 }
 
-
-.hp-label {
-    color: whitesmoke;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
 .one_u {
     margin-left: 20px;
 }
 
 .one_u-label {
+    color: white;
     margin-left: 10px;
-}
-
-
-.description {
-    height: 15ch;
-}
-
-.btn-logout {
-    margin-left: 40px;
-}
-
-.btn-login {
-    background-color: green;
 }
 
 .panel-left {
@@ -165,19 +228,22 @@ H2 {
     width: 100%;
 }
 
-.file_controls {
-    background-color: azure;
-    height: 40px;
+.post-entry {
+    background-color: black;
 }
 
-.btn-post {
-    margin-top: 10px;
+.price-shipping {
+    margin-top: 20px;
 }
 
-.btn-delete {
-    margin-top: 0;
+.size-finish {
+    width: 80%;
 }
 
-.btn-primary {
-    width:fit-content;
+.size-finish-content {
+    position: unset;
+}
+
+.table {
+    width: 100%;
 }
