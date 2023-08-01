@@ -11,7 +11,7 @@ body {
     padding: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../images/Patching_dream.jpeg');
+    background-image: url('../images/Patching_dream.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -94,7 +94,7 @@ body {
 
 .display-label {
     font-weight: bold;
-    font-size: 40px;
+    font-size: 35px;
     margin: 0;
     margin-left: 20px;
     margin-bottom: 20px;
@@ -104,8 +104,15 @@ body {
 .display-content {
     position: absolute;
     left: 270px;
-    font-size: 36px;
+    font-size: 32px;
     margin: 0;
+}
+
+.display-description {
+    font-size: 26px;
+    background-color: white;
+    height: 150px;
+    overflow: auto;
 }
 
 .display-main-panel {
@@ -223,7 +230,7 @@ H2 {
 }
 
 .photo {
-    background-image: url(../images/default-no-image.jpeg);
+    background-image: url(../images/no_photo.jpg);
     background-repeat: no-repeat;
     width: 100%;
 }

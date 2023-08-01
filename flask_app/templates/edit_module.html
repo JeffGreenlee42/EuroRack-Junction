@@ -6,12 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/my_style.css') }}">
-        <title>Post a Module</title>
+        <title>Edit a Posted Module</title>
     </head>
     <body class="d-flex align-items-center justify-content-center">
         <div class="container d-flex flex-column">
             <div class="banner d-flex flex-row justify-content-between">
-                <h2 class="h2 H2-create-edit">Post your module!</h2>
+                <h2 class="h2 H2-create-edit">Edit your posted module!</h2>
                 <div class="actions">
                     <a class="actions-link" href="/marketplace">Home</a>
                 </div>
@@ -29,28 +29,29 @@
             </div>
             <div class="entry d-flex flex-row">
                 <div class="entry-form d-flex flex-row">              
-                    <form action="/modules/add_module" method="post" id="module">
+                    <form action="/modules/update_module" method="post" id="module">
                         <div class="post-entry d-flex flex-column">
                             <div class="attribues d-flex flex-row">
                                 <div class="module-attributes-left d-flex flex-column">
                                     <input type="hidden" name="users_id" id="users_id" value="{{session['user_id']}}">
                                     <input type="hidden" name="photo" id="photo" value="{{session['photo_file_name']}}">
-
-                                    <div class="mb-3 d-flex flex-row">
+                                    <input type="hidden" name="module_id" id="module_id" value="{{module.id}}"> 
+                                    <p style="color: white">Module id is {{module.id}}</p>
+                                     <div class="mb-3 d-flex flex-row">
                                         <label class="form-label" >Module Name:</label>
-                                        <input class="form-control" type="text" name="module_name" id="module_name" maxlength="144" value="{{module['module_name']}}">
+                                        <input class="form-control" type="text" name="module_name" id="module_name" maxlength="144" value="{{module.module_name}}">
                                     </div>
                                     <div class="mb-3 d-flex flex-row">
                                         <label class="form-label" for="maker">Maker:</label>
-                                        <input class="form-control" type="text" placeholder="Maker" name="maker" id="maker">{{module['maker']}}</input>
+                                        <input class="form-control" type="text" placeholder="Maker" name="maker" id="maker" value="{{module.maker}}">
                                     </div>
                                     <div class="mb-3 d-flex flex-row">
                                         <label class="form-label" for="function">Function:</label>
-                                        <input class="form-control" type="text" placeholder="Function" name="function" id="function">{{module['function']}}</input>
+                                        <input class="form-control" type="text" placeholder="Function" name="function" id="function" value="{{module.function}}">
                                     </div>
                                     <div class="condition mb-3 d-flex flex-row">
                                         <label class="form-label" for="condition">Condition:</label>
-                                        <select class="form-control condition-select" name="condition" id="condition" form="module">
+                                        <select class="form-control condition-select" name="condition" id="condition" form="module" value="{{module.condition}}">
                                             <option value="Excellent">Excellent</option>
                                             <option value="Good">Good</option>
                                             <option value="Fair">Fair</option>
@@ -61,7 +62,7 @@
                                 <div class="module-attributes-right d-flex flex-column">
                                     <div class=" mb-3 d-flex flex-row">
                                         <label class="label-finish form-label" for="panel_finish">Finish:</label>
-                                        <select class="form-control finish-fm-cntrl" name="panel_finish" id="panel_finish" form="module">
+                                        <select class="form-control finish-fm-cntrl" name="panel_finish" id="panel_finish" form="module" value="{{module.finish}}">
                                             <option value="white">white</option>
                                             <option value="black">black</option>
                                             <option value="silver">silver</option>
@@ -69,32 +70,32 @@
                                         </select>
                                     </div>
                                     <div class="mb-3 d-flex flex-row">
-                                        <label class="hp-label"for="hp">HP:</label>
-                                        <input class="hp" type="number" name="hp" id="hp" min="2" max="100">
-                                        <input class="one_u" type="checkbox" id="one_u" name="one_u" value="1">
+                                        <label class="hp-label" for="hp">HP:</label>
+                                        <input class="hp" type="number" name="hp" id="hp" min="2" max="100" value="{{ module.hp }}">
+                                        <input class="one_u" type="checkbox" id="one_u" name="one_u" {% if module.one_u == 1 %} checked {% endif %}>
                                         <label class="one_u-label" for="one_u">1u?</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="description d-flex flex-column">
                                 <label class="form-label" for="description">Description:</label>
-                                <textarea class="descr-text" name="description" id="description" cols="50" rows="80"></textarea>
+                                <textarea class="descr-text" name="description" id="description" cols="50" rows="80">{{module.description}}</textarea>
                                 <div class="price-shipping d-flex flex-row">
                                     <label for="price">Price:</label>
-                                    <input type="number" id="price" name="price" min="0">
+                                    <input type="number" id="price" name="price" min="0" value="{{module.price}}">
                                     <label for="shipping">Shipping:</label>
-                                    <input type="number" id="shipping" name="shipping" min="0">
+                                    <input type="number" id="shipping" name="shipping" min="0" value="{{module.shipping}}">
                                 </div>
                             </div>
                         </div> 
-                            <input class="btn btn-primary"   type="submit" value="add_module">
+                            <input class="btn btn-primary"   type="submit" value="Update Module">
                     </form>
                 </div>
                 <div class="photo d-flex flex-column justify-content-center align-items-start">
                     <div class="file-controls d-flex flex-row justify-content-center"> 
                         <div id="uploaded-photo">  
                             <!-- The uploaded photo will be displayed here  -->
-                            <img id="uploaded-image" src="" alt="Uploaded module photo" width="400" height="400">                                                                                                                                                                                                                                                                                                                                                                                   
+                            <img id="uploaded-image" src="/images/uploads/{{module['photo']}}" alt="Uploaded module photo" width="400" height="400">                                                                                                                                                                                                                                                                                                                                                                                   
                         </div>  
                         <!-- <img src="../static/images/uploads/Fixed_Morphader.jpg" alt="Uploaded module photo" width="400" height="400"> --> -->
                         <div class="photo-upload-controls d-flex flex-row">
@@ -126,6 +127,7 @@
                         contentType: false,
                         success: function(data) {
                             // On success, update the photo section with the uploaded photo
+                            console.log("data.photo_url is: " + data.photo_url );
                             $('#uploaded-photo').html('<img src="' + data.photo_url + '" alt="Uploaded module photo" width="400" height="400">');
                         },
                         error: function(xhr, status, error) {

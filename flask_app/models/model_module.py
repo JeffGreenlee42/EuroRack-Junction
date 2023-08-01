@@ -72,6 +72,7 @@ class Module:
     
     @classmethod
     def get_one(cls, module_id):
+        print(f"get_one: module_id is {module_id}")
         module_id = {
             'module_id': module_id
         }
@@ -81,15 +82,17 @@ class Module:
         module = connectToMySQL(db).query_db(query, module_id)
         if not module:
             return False
+        print(f"model - get_one: module = {module}")
         return module[0]# get module data in displayable format
 
     @classmethod
     def change_module(cls, data):
+        print(f"model - Change_module: data is {data}")
         query = """UPDATE modules SET module_name = %(module_name)s, maker = %(maker)s, 
-                    function = %(function)s, panel_finish = %(panel_finish)s, 
-                    hp = %(hp)s, one_u = %(one_u)s, condition = %(condition)s, 
-                    photo = %(photo)s, user_id = %(user_id)s, price = %(price)s,
-                    shipping = %(shipping)s, description = %(description)s
+                    `function` = %(function)s, panel_finish = %(panel_finish)s, 
+                    hp = %(hp)s, one_u = %(one_u)s, `condition` = %(condition)s, 
+                    photo = %(photo)s,  price = %(price)s,
+                    shipping = %(shipping)s, `description` = %(description)s
                     WHERE id = %(module_id)s"""
         result = connectToMySQL(db).query_db(query, data)
         if not result:

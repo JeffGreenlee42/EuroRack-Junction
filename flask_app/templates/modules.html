@@ -49,7 +49,7 @@
                             <td scope="row">Thumbnail</td>
                             <td scope="row"><a href="/modules/get_one/{{module.module_id}}">show</a> 
                                 {% if module.users_id == session['user_id']%}
-                                <span> - </span> <a href="#">edit</a> <span> - </span> <a href="/modules/delete/{{module.module_id}}">delete</a>
+                                <span> - </span> <a href="/modules/edit_module/{{module.module_id}}">edit</a> <span> - </span> <a href="/modules/delete/{{module.module_id}}">delete</a>
                                 {% endif %}
                             </td>
                         </tr>
