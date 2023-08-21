@@ -37,9 +37,9 @@ body {
 }
 
 .body-login {
-    background-image: url('../images/knurlie.jpg');
-    background-repeat: repeat;
-    background-size: cover;
+    background-color: blue;
+    /* background-repeat: repeat;
+    background-size: cover; */
 }
 
 .button-link {
@@ -136,6 +136,10 @@ body {
     
 }
 
+.ElectronicaDisplaySolid {
+	font-family: ElectronicaDisplaySolid;
+}
+
 .error_message {
     color: red;
 }
@@ -155,11 +159,17 @@ body {
     width: 25ch;
 }
 
+h1, h2, h3, h4, h5 {
+    font-family: ElectronicDisplaySolid;
+
+}
+
 H1 {
-    color: purple;
+    color: yellow;
 }
 
 H2 {
+    color: whitesmoke;
     margin-bottom: 20px;
     margin-left: 30px;
 }
@@ -211,7 +221,8 @@ H2 {
 }
 
 .panel-left {
-    background-color: whitesmoke;
+    background-color: midnightblue;
+    height: max-content;
     margin-left: 20px;
     margin-right: 40px;
     padding: 40px 40px;
@@ -219,9 +230,8 @@ H2 {
 }
 
 .panel-right {
-    background-color: whitesmoke;
-    background-color: whitesmoke;
-    height: 400px;
+    background-color: midnightblue;
+    height: max-content;
     margin-left: 20px;
     margin-right: 100px;
     padding: 40px 40px;
@@ -239,8 +249,13 @@ H2 {
     background-color: black;
 }
 
+
 .price-shipping {
     margin-top: 20px;
+}
+
+.register {
+    background-color: midnightblue;
 }
 
 .size-finish {
