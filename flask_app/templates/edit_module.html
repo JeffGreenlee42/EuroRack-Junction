@@ -95,12 +95,14 @@
                     <div class="file-controls d-flex flex-row justify-content-center"> 
                         <div id="uploaded-photo">  
                             <!-- The uploaded photo will be displayed here  -->
-                            <img id="uploaded-image" src="/images/uploads/{{module['photo']}}" alt="Uploaded module photo" width="400" height="400">                                                                                                                                                                                                                                                                                                                                                                                   
+                            <img id="uploaded-image" src="/static/images/uploads/{{session.photo_file_name}}" alt="Uploaded module photo" width="400" height="400">                                                                                                                                                                                                                                                                                                                                                                                   
                         </div>  
                         <!-- <img src="../static/images/uploads/Fixed_Morphader.jpg" alt="Uploaded module photo" width="400" height="400"> --> -->
                         <div class="photo-upload-controls d-flex flex-row">
-                            <form action="/upload" method="POST" enctype="multipart/form-data" id="photo">
+                            <form action="/upload" method="POST" enctype="multipart/form-data" id="photo" name="file">
+                                <label class="form-label" >File:</label>
                                 <input type="file" name="file">
+                                <label class="form-label" >Upload:</label>
                                 <input type="submit" value="upload">
                             </form>    
                         </div>
@@ -120,7 +122,7 @@
 
                     // Use AJAX to send the FormData to the server
                     $.ajax({
-                        url: '/upload', // Replace with the appropriate server URL
+                        url: '/modules/edit_module', // Replace with the appropriate server URL
                         type: 'POST',
                         data: formData,
                         processData: false,

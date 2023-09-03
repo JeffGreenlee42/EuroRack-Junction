@@ -57,6 +57,7 @@ def post_module():
 
 @app.route("/modules/add_module", methods=["POST"])
 def add_module():
+    session['module_id'] = 0;
     if 'user_id' not in session:
         return redirect("/logout")
     if 'photo_file_name' not in session:
@@ -95,6 +96,7 @@ def get_one(module_id):
     # print(f"in controller - get_One() module is {module}")
     if not module:
         return redirect("/marketplace")
+    session['module_id'] = module_id
     return render_template("display_module.html", module = module)
 
 @app.route("/modules/edit_module/<int:module_id>")
@@ -102,8 +104,12 @@ def edit_module(module_id):
     if 'user_id' not in session:
         redirect("/")
     module = Module.get_one(module_id)
+    if 'photo_file_name' in session:
+        module['photo'] = session['photo_file_name']
+    session['module_id'] = module_id
     if not module:
         return redirect("/modules")
+    print(f"Now in route edit_module: module is {module}")
     return render_template("edit_module.html", module = module)
 
 @app.route("/modules/update_module", methods=['POST'])
@@ -141,26 +147,45 @@ def delete_module(module_id):
     Module.delete_module(module_id)
     return redirect("/marketplace")
 
-@app.route("/upload", methods=['POST'])
+@app.route("/upload", methods=['GET','POST'])
 def upload():
-    try:
-        file = request.files.get('file')  # Use get() to handle missing 'file' key gracefully
-        if file:
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_DIRECTORY'], filename))
+    print(f"request method is {request.method}")
+    if request.method == 'POST':
+        try:
+            file = request.files.get('file')  # Use get() to handle missing 'file' key gracefully
+            print(f"photo file is: {file}")
+            print(f"Session is {session}")
+            if file:
+                filename = secure_filename(file.filename)
+                print(f"filename is now: {filename}")
+                file.save(os.path.join(app.config['UPLOAD_DIRECTORY'], filename))
 
-            session['photo_file_name'] = filename
-            photo_url = f"{request.url_root}images/uploads/{filename}"
-            print(f"Uploaded photo URL: {photo_url}") 
-            return jsonify({"photo_url": photo_url})
-        else:
-            # Handle case when 'file' key is missing in the request
-            raise BadRequest("No file uploaded.")
-    except RequestEntityTooLarge:
-        return "The File you uploaded is larger than the limit of 16MB."
-    except Exception as e:
+                session['photo_file_name'] = filename
+                photo_url = f"{request.url_root}static/images/uploads/{filename}"
+                print(f"Uploaded photo URL: {photo_url}") 
+                print("About to return jsonify")
+                
+                # here we need to determine if this photo was updated in "new Module" or in "edited Modules"
+                # so we now which one to redirect to. 
+                # print("about to print out session['module_id']")
+                print(f"In route upload: session is {session}")
+                # print(f"Module ID is {session['module_id']}")
+                if 'module_id' in session:
+                    if (session['module_id'] == 0):
+                        print("Module ID is 0")
+                    else:
+                        print(f"module ID is NOT 0 - it is {session['module_id']}")
+                        return redirect(f"/modules/edit_module/{session['module_id']}")
+                return jsonify({"photo_url": photo_url})
+                # return redirect("/modules/add_module")
+            else:
+                # Handle case when 'file' key is missing in the request
+                raise BadRequest("No file uploaded.")
+        except RequestEntityTooLarge:
+            return "The File you uploaded is larger than the limit of 16MB."
+        except Exception as e:
         # Handle any other unexpected error during file upload or saving
-        return f"Error: {str(e)}"
+            return f"Error: {str(e)}"
 
     # If no file was uploaded or there was an error, provide a response
     print(f"In controller: upload() session['photo_file_name'] is {session['photo_file_name']}")

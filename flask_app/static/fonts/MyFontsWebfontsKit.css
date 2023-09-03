@@ -18,6 +18,6 @@
   
 @font-face {
   font-family: "ElectronicaDisplaySolid";
-  src: url('static/fonts/webFonts/ElectronicaDisplaySolid/font.woff2') format('woff2'), url('webFonts/ElectronicaDisplaySolid/font.woff') format('woff');
+  src: url('webFonts/ElectronicaDisplaySolid/font.woff2') format('woff2'), url('webFonts/ElectronicaDisplaySolid/font.woff') format('woff');
 }
 
